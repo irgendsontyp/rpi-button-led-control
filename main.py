@@ -14,7 +14,7 @@ GPIO_PIN_NR_BUTTON = 38
 GPIO.setup(GPIO_PIN_NR_LED, GPIO.OUT)
 
 # Button needs input mode
-GPIO.setup(GPIO_PIN_NR_SWITCH, GPIO.IN)
+GPIO.setup(GPIO_PIN_NR_BUTTON, GPIO.IN)
 
 # Event object for handling SIGINT
 ev = threading.Event()
@@ -43,7 +43,7 @@ signal.signal(signal.SIGINT, sigIntHandler)
 
 
 # Register callback for falling voltage on the pin (= button released)
-GPIO.add_event_detect(GPIO_PIN_NR_SWITCH, GPIO.FALLING, callback = toggleLed, bouncetime = 200) 
+GPIO.add_event_detect(GPIO_PIN_NR_BUTTON, GPIO.FALLING, callback = toggleLed, bouncetime = 200) 
 
 
 # Wait for SIGINT. Button handling is done via a separate thread created by GPIO.add_event_detect
